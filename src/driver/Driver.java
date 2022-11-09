@@ -4,19 +4,31 @@ import transport.Transport;
 
 public abstract class Driver<T extends Transport> {
     private final String fullName;
-    private final String category;
+    private String category;
     private final int drivingExperience;
     private final T car;
 
+
     public Driver(String fullName, String category, int drivingExperience, T car) {
         this.fullName = fullName;
-        this.category = category;
+        setCategory(category);
         this.drivingExperience = drivingExperience;
         this.car = car;
     }
+
+
+
     public String getFullName() {
         return fullName;
     }
+
+    public void setCategory(String category) {
+        if (category == null) {
+            throw new IllegalArgumentException("Необходимо указать категорию прав");
+        }
+        this.category = category;
+    }
+
 
     public String getCategory() {
         return category;

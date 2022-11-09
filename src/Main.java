@@ -1,4 +1,5 @@
 import driver.DriverB;
+import driver.DriverC;
 import transport.*;
 
 public class Main {
@@ -35,12 +36,39 @@ public class Main {
 
 
 
-        Car car = new Car("Kia", "K5", 3.0, TypeOfBody.SEDAN);
-        DriverB driverB = new DriverB("Роман", 10,car);
+        DriverB driverB = new DriverB("Иванов Ивано Иванович", "B", 5, kia);
         System.out.println(driverB);
-        car.printType();
+        kia.printType();
+        DriverC driverC = new DriverC("Моисеев Владимир Николаевич", "C", 10, mon);
+        System.out.println(driverC);
+        mon.printType();
 
+        service(lada,kia,skoda,audi,
+                man, gaz, maz, setra,
+                iveco, volvo, mon, mercedes);
 
 
     }
+
+    private static void service(Transport...transports) {
+        for (Transport transport : transports) {
+               serviceTransport(transport);
+        }
+    }
+
+    private static void serviceTransport(Transport transport) {
+        try {
+            if (!transport.service()) {
+                throw new RuntimeException("Автомобиль " +
+                        transport.getBrand() + " " + transport.getModel() + " не прошел диагностику");
+            }
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+
+
+
 }

@@ -22,6 +22,11 @@ public class Car extends Transport implements Competing{
         }
     }
 
+    @Override
+    public boolean service() {
+        return Math.random()> 0.7;
+    }
+
     public void startDriving() {
         System.out.printf("Автомобиль %s %s начни движение",
                 this.getBrand(),
